@@ -1,6 +1,7 @@
 const img=document.querySelector("img");
 const btn=document.querySelector("button");
 const input=document.querySelector("input");
+const p=document.querySelector("p");
 
 let keyword="cats";
 
@@ -11,10 +12,14 @@ function getImg(keyword){
     })
     .then(function(response){
         img.src=response.data.images.original.url;
+    })
+    .catch(function(e){
+        p.textContent=e;
     });
 }
 
 btn.addEventListener("click",()=>{
+    p.textContent="";
     if(input.value) keyword=input.value;
     getImg(keyword);
 })
